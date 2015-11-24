@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^research.html', views.app01_view_research, name='app01_view_research'),
     url(r'^contacts.html', views.app01_view_contacts, name='app01_view_contacts'),
     url(r'^nanocore.html', views.app01_view_nanocore, name='app01_view_nanocore'),
+#    url(r'^nanocore_base.html', views.app01_view_nanocore, name='app01_view_nanocore'),
     url(r'^app01_view_nanocore/', views.app01_view_nanocore, name="app01_view_nanocore"),
     url(r'^publications.html', views02.app02_view_publications, name='app02_view_publications'),
 

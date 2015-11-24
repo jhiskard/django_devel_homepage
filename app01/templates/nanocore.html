@@ -1,106 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>NanoCore on the Net</title>
-<meta charset="utf-8">
-<meta name="format-detection" content="telephone=no" />
-<link rel="icon" href="/static/images/favicon.ico">
-<link rel="shortcut icon" href="/static/images/favicon.ico" />
-<link rel="stylesheet" href="/static/css/style.css">
-<script src="/static/js/jquery.js"></script>
-<script src="/static/js/jquery-migrate-1.1.1.js"></script>
-<script src="/static/js/jquery.easing.1.3.js"></script>
-<script src="/static/js/script.js"></script> 
-<script src="/static/js/superfish.js"></script>
-<script src="/static/js/jquery.equalheights.js"></script>
-<script src="/static/js/jquery.mobilemenu.js"></script>
-<script src="/static/js/tmStickUp.js"></script>
-<script src="/static/js/jquery.ui.totop.js"></script>
-<script>
- $(window).load(function(){
-  $().UItoTop({ easingType: 'easeOutQuart' });
-  $('#stuck_container').tmStickUp({});  
- }); 
-</script>
-<!--[if lt IE 8]>
- <div style=' clear: both; text-align:center; position: relative;'>
-   <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-     <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
-   </a>
-</div>
-<![endif]-->
-<!--[if lt IE 9]>
-<script src="js/html5shiv.js"></script>
-<link rel="stylesheet" media="screen" href="css/ie.css">
-<![endif]-->
-</head>
-<body>
-<!--==============================
-              header
-=================================-->
-<header>
-  <div class="container">
-    <div class="row">
-      <div class="grid_12 rel">
-        <h1>
-          <a href="index.html">
-            <img src="/static/images/logo.png" alt="Logo alt">
-          </a>
-        </h1>
-      </div>
-    </div>
-  </div>
-  <section id="stuck_container">
-  <!--==============================
-              Stuck menu
-  =================================-->
-    <div class="container">
-      <div class="row">
-        <div class="grid_12 ">
-          <div class="navigation ">
-            <nav>
-              <ul class="sf-menu">
-               <li><a href="index.html">Home</a></li>
-               <li class="current"><a href="nanocore.html">NanoCore on the Net</a></li>
-               <li><a href="research.html">Research</a></li>
-               <li><a href="publications.html">Publications</a></li>
-               <li><a href="contacts.html">Contacts</a></li>
-             </ul>
-            </nav>
-            <div class="clear"></div>
-          </div>       
-         <div class="clear"></div>  
-        </div>
-     </div> 
-    </div> 
-  </section>
-</header>
+{% extends 'nanocore_base.html' %}
+
+{% block content %}
 <!--=====================
           Content
 ======================-->
-<section id="content"><div class="ic">More Website Templates @ TemplateMonster.com - July 28, 2014!</div>
-  <div class="container">
-    <div class="row">
-      <div class="grid_12">
-        <h3>NanoCore on the Net</h3>
-        <img src="/static/images/page2_img.jpg" alt="" class="img_inner fleft">
-        <div class="extra_wrapper">
-          <p class="fwn">A simple atomic structure viewer based on jsmol. Some simple modification is also available on this website.<br><a href="nanocore_details.html">Click here </a>for more details.</p>
-          How to Use This Page<br>
-          1. Select your atomic structure file. (required) <br>
-          2. Write a description for your model. (optional) <br>
-          3. You can modify the original strcuture by writting some commands in "commands". (optional) <p><br>
-<!--          <form method="POST" action="/app01_view_nanocore/" enctype="multipart/form-data"> -->
-          <form method="POST" action="/nanocore.html" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{form.as_p}}
-            <p><input type="submit" value="OK"/></p>
-          </form>
-          <form action="/nanocore.html"><input type="submit" value="Clean-up"></form>
-        </div>
-      </div>
-    </div>
-  </div>
+  <h3>Structure Viewer</h3>
+  <div class="extra_wrapper">
+  <p class="fwn">A simple atomic structure viewer based on jsmol. Some simple modification is also available on this website.<br><a href="nanocore_details.html">Click here </a>for more details.</p>
+  How to Use This Page<br>
+  1. Select your atomic structure file. (required) <br>
+  2. Write a description for your model. (optional) <br>
+  3. You can modify the original strcuture by writting some commands in "commands". (optional) <p><br>
+    <form method="POST" action="/nanocore.html" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{form.as_p}}
+      <p><input type="submit" value="Submit"/></p>
+    </form>
+    <form action="/nanocore.html"><input type="submit" value="Reset"></form>
 
   <article class="content_gray offset__1">
     <div class="container">
@@ -111,11 +27,11 @@
         <div class="grid_6">
           <div class="block-3">
             <div class="extra_wrapper">
-              <div class="text1"><a href="#">Jsmol Viewer</a></div>
+              <div class="text1"><a href="#">Jsmol Viewer</a>
+              </div>
 
-{% block content %}
     <!-- jQuery -->
-    <script src="/static/js/jquery.js"></script>
+    <!--<script src="/static/js/jquery.js"></script>-->
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/static/js/bootstrap.min.js"></script>
@@ -146,7 +62,6 @@
                 jarPath: "./usr/bin/java",// this needs to point to where the java directory is.
                 jarFile: "JmolAppletSigned.jar",
                 isSigned: true,
-                //script: "set antialiasDisplay; load /uploaded_files/user_{{request.user.id}}/{{request.created}}+00:00/{{filename}}; unitcell on; rotate x 90",
                 script: "set antialiasDisplay; load {{jsmolpath}}; unitcell on;",
                 serverURL: "/static/find/jsmol/php/jsmol.php",
                 readyFunction: jmol_isReady,
@@ -167,11 +82,13 @@
             </div>
           </div>
         </div>
-
-        <div class="grid_6">
-          <div class="block-3">
-            <div class="extra_wrapper">
-              <div class="text1"><a href="#">Details</a></div>
+      </div>
+    </div>
+    <div class="grid_6">
+      <div class="block-3">
+        <div class="extra_wrapper">
+          <div class="text1"><a href="#">Details</a>
+          </div>
 
 <form
     method="POST"
@@ -199,64 +116,9 @@
    </tr>
    {% endfor %}                                                       
     </tbody>
-</table>                 
-{% endblock %}
-
-            </div>
-          </div>
+</table>
         </div>
+      </div>
     </div>
   </article>
-
-<!--
-  <div class="container">
-    <div class="row">
-      <div class="grid_12">
-        <h3>Our Staff</h3>
-      </div>
-      <div class="grid_2">
-        <img src="images/page2_img1.jpg" alt="" class="bord_img">
-        <div class="text2"><a href="#">Sharon Brown</a></div>Curabitur vel lorem sitmet nulla ullamcorper mentum In vitae dert rius augue, eu consectetur ligulaam dui eros dertolisce dertoloing quam id risus sagittis
-      </div>
-      <div class="grid_2">
-        <img src="images/page2_img2.jpg" alt="" class="bord_img">
-        <div class="text2"><a href="#">Mark Carter</a></div>Curabitur vel lorem sitmet nulla ullamcorper mentum In vitae dert rius augue, eu consectetur ligulaam dui eros dertolisce dertoloing quam id risus sagittis
-      </div>
-      <div class="grid_2">
-        <img src="images/page2_img3.jpg" alt="" class="bord_img">
-        <div class="text2"><a href="#">Sandra Smith</a></div>Curabitur vel lorem sitmet nulla ullamcorper mentum In vitae dert rius augue, eu consectetur ligulaam dui eros dertolisce dertoloing quam id risus sagittis
-      </div>
-      <div class="grid_2">
-        <img src="images/page2_img4.jpg" alt="" class="bord_img">
-        <div class="text2"><a href="#">Tim Jons</a></div>Curabitur vel lorem sitmet nulla ullamcorper mentum In vitae dert rius augue, eu consectetur ligulaam dui eros dertolisce dertoloing quam id risus sagittis
-      </div>
-      <div class="grid_2">
-        <img src="images/page2_img5.jpg" alt="" class="bord_img">
-        <div class="text2"><a href="#">Richard Wright</a></div>Curabitur vel lorem sitmet nulla ullamcorper mentum In vitae dert rius augue, eu consectetur ligulaam dui eros dertolisce dertoloing quam id risus sagittis
-      </div>
-      <div class="grid_2">
-        <img src="images/page2_img6.jpg" alt="" class="bord_img">
-        <div class="text2"><a href="#">Kevin Steawart</a></div>Curabitur vel lorem sitmet nulla ullamcorper mentum In vitae dert rius augue, eu consectetur ligulaam dui eros dertolisce dertoloing quam id risus sagittis
-      </div>
-    </div>
-  </div>
--->
-
-</section>
-<!--==============================
-              footer
-=================================-->
-<footer id="footer">
-  <div class="container">
-    <div class="row">
-      <div class="grid_12"> 
-        <div class="copyright"><span class="brand">Stable</span> &copy; <span id="copyright-year"></span> | <a href="#">Privacy Policy</a>
-          <div class="sub-copy">Website designed by <a href="http://www.templatemonster.com/" rel="nofollow">TemplateMonster.com</a></div>
-        </div>
-      </div>
-    </div>
-  </div>  
-</footer>
-<a href="#" id="toTop" class="fa fa-chevron-up"></a>
-</body>
-</html>
+{% endblock %}

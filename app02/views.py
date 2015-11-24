@@ -13,7 +13,7 @@ def app02_view_publications(request):
     temp = Publication.objects.all().order_by('year', 'published_month', 'published_date')
     temp = temp.reverse()
 
-    temp = Paginator(temp, 4)
+    temp = Paginator(temp, 10)
     page = request.GET.get('page')
 
     try:
