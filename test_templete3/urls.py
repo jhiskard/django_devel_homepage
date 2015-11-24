@@ -31,8 +31,17 @@ urlpatterns = [
     url(r'^index.html', views02.app02_view_publications_index, name='app01_view_index'),
     url(r'^research.html', views.app01_view_research, name='app01_view_research'),
     url(r'^contacts.html', views.app01_view_contacts, name='app01_view_contacts'),
-    url(r'^nanocore.html', views.app01_view_nanocore, name='app01_view_nanocore'),
-#    url(r'^nanocore_base.html', views.app01_view_nanocore, name='app01_view_nanocore'),
+
+    url(r'^people_prof.html', views.app01_view_people_prof, name='app01_view_people_prof'),
+    url(r'^people_member.html', views.app01_view_people_member, name='app01_view_people_member'),
+    url(r'^people_alumni.html', views.app01_view_people_alumni, name='app01_view_people_alumni'),
+    url(r'^people_collab.html', views.app01_view_people_collab, name='app01_view_people_collab'),
+
+#    url(r'^nanocore.html', views.app01_view_nanocore, name='app01_view_nanocore'),
+    url(r'^nanocore_viewer.html', views.app01_view_nanocore, name='app01_view_nanocore'),
+    url(r'^nanocore_junction.html', views.app01_view_nanocore_junction, name='app01_view_nanocore_junction'),
+    url(r'^nanocore_analysis.html', views.app01_view_nanocore_analysis, name='app01_view_nanocore_analysis'),
+
     url(r'^app01_view_nanocore/', views.app01_view_nanocore, name="app01_view_nanocore"),
     url(r'^publications.html', views02.app02_view_publications, name='app02_view_publications'),
 

@@ -6,20 +6,20 @@
 ======================-->
   <div class="container">
 
-    <h3>Structure Viewer</h3>
+    <h3>1. Structure Viewer</h3>
 
     <p class="fwn">A simple atomic structure viewer based on jsmol. Some simple modification is also available on this website.<br><a href="nanocore_details.html">Click here </a>for more details.</p>
-  How to Use This Page<br>
+    How to Use This Page<br>
     1. Select your atomic structure file. (required) <br>
     2. Write a description for your model. (optional) <br>
     3. You can modify the original strcuture by writting some commands in "commands". (optional) <p><br>
 
-    <form method="POST" action="/nanocore.html" enctype="multipart/form-data">
+    <form method="POST" action="/nanocore_viewer.html" enctype="multipart/form-data">
       {% csrf_token %}
       {{form.as_p}}
       <p><input type="submit" value="Submit"/></p>
     </form>
-    <form action="/nanocore.html"><input type="submit" value="Reset"></form>
+    <form method="GET" action="/nanocore_viewer.html"><input type="submit" value="Reset"></form>
 
 
   <article class="container">
@@ -28,6 +28,9 @@
       <h3>Information on your atomic structure</h3>
     </div>
 
+<!--=====================
+      Jsmol Viewer
+======================-->
     <div class="grid_6">
       <div class="text1"><a href="#">Jsmol Viewer</a></div>
 
@@ -68,6 +71,9 @@
       <p id="appdiv"></p>
     </div>
 
+<!--=====================
+       atom list
+======================-->
     <div class="grid_5">
       <div class="text1"><a href="#">Details</a></div>
       <form method="POST" action="/app01_view_nanocore/" enctype="multipart/form-data"></form>
@@ -91,29 +97,33 @@
      {% endfor %}                                                       
      </tbody>
      </table>
+    </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!--=====================
+        History
+======================-->
+    <div class="grid_11">
+      <div class="text1"><a href="#">History</a></div>
+      <form method="POST" action="/app01_view_nanocore/" enctype="multipart/form-data"></form>
+      <table class="table table-bordered" border=1, cellpadding="10">
+      <thead>
+        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">Serial Number</td>
+        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">structure file</td>
+        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">description</td>
+        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">commands</td>
+      </thead>
+      <tbody>                   
+      {% for i, user, struct, descript, comm in results2 %}
+      <tr>
+        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">{{i}}</td>
+        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">{{struct}}</td>
+        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">{{descript}}</td>
+        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">{{comm}}</td>
+     </tr>
+     {% endfor %}                                                       
+     </tbody>
+     </table>
+    </div>
 
   </article>
   </div>

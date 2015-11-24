@@ -61,10 +61,19 @@
             <nav>
               <ul class="sf-menu">
                <li><a href="index.html">Home</a></li>
-               <li><a href="nanocore.html">NanoCore on the Net</a></li>
+               <li><a href="people_prof.html">People</a></li>
+               <li><a href="nanocore_viewer.html">NanoCore on the Net</a></li>
                <li><a href="research.html">Research</a></li>
                <li class="current"><a href="publications.html">Publications</a></li>
                <li><a href="contacts.html">Contacts</a></li>
+               <li>
+                 {% if request.user.is_authenticated %}
+                 <a href="{% url 'logout_url' %}?next=/index.html">{{request.user.username }}, Log Out</a>
+                 {% else %}
+                 <a href="{% url 'login_url' %}">Log In</a>
+                 {% endif %}
+               </li>
+               <li><a href="/signup">Sign up</a></li>
              </ul>
             </nav>
             <div class="clear"></div>
@@ -88,8 +97,11 @@
         {% for i, thumbnail, title, authors, year, vol, pages, doi, link, abstract, pub_m, pub_d in results %}
         <div class="blog">
           <time datetime="2014-01-01">
-<!--           <span class="count">{{i}}</span> -->
-<!--           <strong>July</strong> -->
+            {% if pub_m == None %}
+            <span class="count">Prep.</span>
+            {% else %}
+            <span class="count">{{pub_m}}.{{pub_d}}</span>
+            {% endif %}
             <strong>{{year}}</strong>
           </time><br>
           <div class="grid_2"><img src="{{thumbnail}}" alt="No Image" class="img_inner fleft" width="150"></div>

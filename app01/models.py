@@ -21,6 +21,16 @@ class app01_UploadStructureModel(models.Model):
 """)
     created  = models.DateTimeField(default=now)
 
+"""
+class app01_JunctionModel(models.Model):
+    contact1 = models.CharField()
+    sizec1   = models.CharField()
+    contact2 = models.CharField()
+    sizec2   = models.CharField()
+    scatter  = models.CharField()
+    sizes1   = models.CharField()
+    created  = models.DateTimeField(default=now)
+"""
 
 from django.contrib.auth.models import User
 

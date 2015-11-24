@@ -5,7 +5,7 @@ from django.contrib.auth import logout
 
 # Create your views here.
 from app01.forms import UploadStructureForm
-#from app01.models import app01_UploadStructureModel
+from app01.models import app01_UploadStructureModel
 
 def app01_view_index(request):
     context = {}
@@ -25,6 +25,34 @@ def app01_view_research(request):
 def app01_view_contacts(request):
     context = {}
     return render(request, 'contacts.html', context)
+
+def app01_view_people_prof(request):
+    context = {}
+    return render(request, 'people_prof.html', context)
+
+
+def app01_view_people_member(request):
+    context = {}
+    return render(request, 'people_member.html', context)
+
+def app01_view_people_alumni(request):
+    context = {}
+    return render(request, 'people_alumni.html', context)
+
+
+def app01_view_people_collab(request):
+    context = {}
+    return render(request, 'people_collab.html', context)
+
+
+def app01_view_nanocore_junction(request):
+    context = {}
+    return render(request, 'nanocore_junction.html', context)
+
+
+def app01_view_nanocore_analysis(request):
+    context = {}
+    return render(request, 'nanocore_analysis.html', context)
 
 
 from django.contrib.auth.decorators import login_required
@@ -95,8 +123,24 @@ def app01_view_nanocore(request):
                        'results':   results,
                       }
 
+    # accumulated data part
+    temp = app01_UploadStructureModel.objects.all()
+    results2 = []
+    i = 1
+    for t in temp:
+        user = t.user
+        structurefile = str(t.structurefile).split('/')[-1]
+        description = str(t.description)
+        commands = str(t.commands)
+        if str(t.user) == str(request.user):
+            results2.append([i, user, structurefile, description, commands])
+        i += 1
+        results2.reverse()
+
+    # update context
+    context['results2'] = results2
     context['form'] = edit_form
-    return render(request, 'nanocore.html', context)
+    return render(request, 'nanocore_viewer.html', context)
 
 
 def logout_view(request):

@@ -64,10 +64,19 @@
             <nav>
               <ul class="sf-menu">
                <li><a href="index.html">Home</a></li>
-               <li><a href="nanocore.html">NanoCore on the Net</a></li>
+               <li><a href="people_prof.html">People</a></li>
+               <li><a href="nanocore_viewer.html">NanoCore on the Net</a></li>
                <li><a href="research.html">Research</a></li>                                                          
                <li><a href="publications.html">Publications</a></li>
                <li class="current"><a href="contacts.html">Contacts</a></li>
+               <li>
+                 {% if request.user.is_authenticated %}
+                 <a href="{% url 'logout_url' %}?next=/index.html">{{request.user.username }}, Log Out</a>
+                 {% else %}
+                 <a href="{% url 'login_url' %}">Log In</a>
+                 {% endif %}
+               </li>
+               <li><a href="/signup">Sign up</a></li>
              </ul>
             </nav>
             <div class="clear"></div>
