@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Publications</title>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no" />
+<link rel="icon" href="/static/images/favicon.ico">
+<link rel="shortcut icon" href="/static/images/favicon.ico" />
+<link rel="stylesheet" href="/static/css/style.css">
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/jquery-migrate-1.1.1.js"></script>
+<script src="/static/js/jquery.easing.1.3.js"></script>
+<script src="/static/js/script.js"></script> 
+<script src="/static/js/superfish.js"></script>
+<script src="/static/js/jquery.equalheights.js"></script>
+<script src="/static/js/jquery.mobilemenu.js"></script>
+<script src="/static/js/tmStickUp.js"></script>
+<script src="/static/js/jquery.ui.totop.js"></script>
+<script>
+ $(window).load(function(){
+  $().UItoTop({ easingType: 'easeOutQuart' });
+  $('#stuck_container').tmStickUp({});  
+ }); 
+</script>
+<!--[if lt IE 8]>
+ <div style=' clear: both; text-align:center; position: relative;'>
+   <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+     <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+   </a>
+</div>
+<![endif]-->
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<link rel="stylesheet" media="screen" href="css/ie.css">
+<![endif]-->
+</head>
+<body>
+<!--==============================
+              header
+=================================-->
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="grid_12 rel">
+        <h1>
+          <a href="index.html">
+            <img src="/static/images/logo.png" alt="Logo alt">
+          </a>
+        </h1>
+      </div>
+    </div>
+  </div>
+  <section id="stuck_container">
+  <!--==============================
+              Stuck menu
+  =================================-->
+    <div class="container">
+      <div class="row">
+        <div class="grid_12 ">
+          <div class="navigation ">
+            <nav>
+              <ul class="sf-menu">
+               <li><a href="index.html">Home</a></li>
+               <li><a href="nanocore.html">NanoCore on the Net</a></li>
+               <li><a href="research.html">Research</a></li>
+               <li class="current"><a href="publications.html">Publications</a></li>
+               <li><a href="contacts.html">Contacts</a></li>
+             </ul>
+            </nav>
+            <div class="clear"></div>
+          </div>       
+         <div class="clear"></div>  
+        </div>
+     </div> 
+    </div> 
+  </section>
+</header>
+<!--=====================
+          Content
+======================-->
+<section id="content"><div class="ic">More Website Templates @ TemplateMonster.com - July 28, 2014!</div>
+  <div class="container">
+    <div class="row">
+      <div class="grid_12">
+        <h3>Publications</h3>
+          More information: <strong><a href="https://scholar.google.com/citations?user=_J9zaVUAAAAJ&hl=en" class="comment">Google Scholar</a></strong> or <strong><a href="http://www.researcherid.com/ProfileView.action?SID=P2s2y3pVYdiiQrGESiA&returnCode=ROUTER.Success&queryString=KG0UuZjN5WmCiHc%252FMC4oLVfoITIR2VRbdqABWMaFY3U%253D&SrcApp=CR&Init=Yes" class="comment">ResearcherID</a></strong>.
+
+        {% for i, thumbnail, title, authors, year, vol, pages, doi, link, abstract, pub_m, pub_d in results %}
+        <div class="blog">
+          <time datetime="2014-01-01">
+<!--           <span class="count">{{i}}</span> -->
+<!--           <strong>July</strong> -->
+            <strong>{{year}}</strong>
+          </time><br>
+          <div class="grid_2"><img src="{{thumbnail}}" alt="No Image" class="img_inner fleft" width="150"></div>
+          <div class="grid_8">
+<!--            <a href="#" class="comment"><span class="fa fa-comments"></span>1</a> -->
+            <p><span class="fwn"><a href="{{link}}"><strong>{{title}}</strong></a></span>
+            <em>by {{authors}} published at {{pub_m}}.{{pub_d}}, {{year}}</em></p>
+            {{abstract}}
+            <br>
+            <div align="right">
+              DOI: {{doi}}<br>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+<p>
+<div class="pagination" align='center'>
+    <span class="step-links">
+        <a href="?page=1">Recent</a>
+        {% if posts.has_previous %}
+            <a href="?page={{ posts.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+        </span>
+
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}">next</a>
+        {% endif %}
+        <a href="?page={{ posts.end_index }}">Oldest</a>
+    </span>
+</div>
+
+<!--
+        <div class="blog">
+          <time datetime="2014-01-01"><span class="count">02</span><strong>July</strong>2014</time>
+          <img src="/static/images/page4_img1.jpg" alt="" class="img_inner fleft">
+          <div class="extra_wrapper">
+            <a href="#" class="comment"><span class="fa fa-comments"></span> 3</a>
+            <p><span class="fwn"><a href="#">Livamus at magna non nunc tristique rhoncus. Aliquam nibh ante, egestas id dictum.</a></span><em>Posted by <a href="#">Admin</a></em></p>Curabitur vel lorem sit amet nulla ullamcorper fermentum. In vitae varius augue, eu consectetur ligula. Etiam dui eros, laoreet site amet est vel, commodo venenatis eros. Fusce adipiscing quam id risus sagittis, non consequat lacus interdumertolo mokiju werto <br>
+            nulla, eu sodales arcu. Quisque viverra nulla nunc, eu ultrices libero ultricies eget. Phasellus accumsan justo vitae feugiat placerat. Praesent vel ultrices velit. Suspendisse risus justo, lacinia vitae eleifend sed, cursus sit amet. Huisque viverra nulla nunc, eu ultrices libero ultricies eget. Ohasellus accumsajusto vitae feugiat placerat. Praesent vel ultrices velit. Suspendisse risus justo, lacinia vitae eleifend sed, cursus sit amet ertolomino kolinomi holo. 
+            <br>
+            <a href="#" class="link-1">more</a>
+          </div>
+        </div>
+
+        <div class="blog">
+          <time datetime="2014-01-01"><span class="count">05</span><strong>July</strong>2014</time>
+          <img src="/static/images/page4_img2.jpg" alt="" class="img_inner fleft">
+          <div class="extra_wrapper">
+            <a href="#" class="comment"><span class="fa fa-comments"></span> 1</a>
+            <p><span class="fwn"><a href="#">Deliquam nibh ante, egestas id dictum. Phasellus erat nisl, auctor vel velit sed, pharetra.</a></span><em>Posted by <a href="#">Admin</a></em></p>Curabitur vel lorem sit amet nulla ullamcorper fermentum. In vitae varius augue, eu consectetur ligula. Etiam dui eros, laoreet site amet est vel, commodo venenatis eros. Fusce adipiscing quam id risus sagittis, non consequat lacus interdumertolo mokiju werto <br>
+            nulla, eu sodales arcu. Quisque viverra nulla nunc, eu ultrices libero ultricies eget. Phasellus accumsan justo vitae feugiat placerat. Praesent vel ultrices velit. Suspendisse risus justo, lacinia vitae eleifend sed, cursus sit amet. Huisque viverra nulla nunc, eu ultrices libero ultricies eget. Ohasellus accumsajusto vitae feugiat placerat. Praesent vel ultrices velit. Suspendisse risus justo, lacinia vitae eleifend sed, cursus sit amet ertolomino kolinomi holo. 
+            <br>
+            <a href="#" class="link-1">more</a>
+          </div>
+        </div>
+
+        <div class="blog">
+          <time datetime="2014-01-01"><span class="count">12</span><strong>July</strong>2014</time>
+          <img src="/static/images/page4_img3.jpg" alt="" class="img_inner fleft">
+          <div class="extra_wrapper">
+            <a href="#" class="comment"><span class="fa fa-comments"></span> 2</a>
+            <p><span class="fwn"><a href="#">Ellus erat nisl, auctor vel velit sed, pharetraiue rhoncliquam nibh ante, egestas id dictuy.</a></span><em>Posted by <a href="#">Admin</a></em></p>Curabitur vel lorem sit amet nulla ullamcorper fermentum. In vitae varius augue, eu consectetur ligula. Etiam dui eros, laoreet site amet est vel, commodo venenatis eros. Fusce adipiscing quam id risus sagittis, non consequat lacus interdumertolo mokiju werto <br>
+            nulla, eu sodales arcu. Quisque viverra nulla nunc, eu ultrices libero ultricies eget. Phasellus accumsan justo vitae feugiat placerat. Praesent vel ultrices velit. Suspendisse risus justo, lacinia vitae eleifend sed, cursus sit amet. Huisque viverra nulla nunc, eu ultrices libero ultricies eget. Ohasellus accumsajusto vitae feugiat placerat. Praesent vel ultrices velit. Suspendisse risus justo, lacinia vitae eleifend sed, cursus sit amet ertolomino kolinomi holo. 
+            <br>
+            <a href="#" class="link-1">more</a>
+          </div>
+        </div>
+
+        <div class="blog">
+          <time datetime="2014-01-01"><span class="count">22</span><strong>July</strong>2014</time>
+          <img src="/static/images/page4_img4.jpg" alt="" class="img_inner fleft">
+          <div class="extra_wrapper">
+            <a href="#" class="comment"><span class="fa fa-comments"></span> 0</a>
+            <p><span class="fwn"><a href="#">Mamus at magna non nunc tristique rhoncus. Aliquam nibh ante, egestas id dictumo.</a></span><em>Posted by <a href="#">Admin</a></em></p>Curabitur vel lorem sit amet nulla ullamcorper fermentum. In vitae varius augue, eu consectetur ligula. Etiam dui eros, laoreet site amet est vel, commodo venenatis eros. Fusce adipiscing quam id risus sagittis, non consequat lacus interdumertolo mokiju werto <br>
+            nulla, eu sodales arcu. Quisque viverra nulla nunc, eu ultrices libero ultricies eget. Phasellus accumsan justo vitae feugiat placerat. Praesent vel ultrices velit. Suspendisse risus justo, lacinia vitae eleifend sed, cursus sit amet. Huisque viverra nulla nunc, eu ultrices libero ultricies eget. Ohasellus accumsajusto vitae feugiat placerat. Praesent vel ultrices velit. Suspendisse risus justo, lacinia vitae eleifend sed, cursus sit amet ertolomino kolinomi holo. 
+            <br>
+            <a href="#" class="link-1">more</a>
+          </div>
+-->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--==============================
+              footer
+=================================-->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="grid_12"> 
+        <div class="copyright"><span class="brand">Stable</span> &copy; <span id="copyright-year"></span> | <a href="#">Privacy Policy</a>
+          <div class="sub-copy">Website designed by <a href="http://www.templatemonster.com/" rel="nofollow">TemplateMonster.com</a></div>
+        </div>
+      </div>
+    </div>
+  </div>  
+</footer>
+<a href="#" id="toTop" class="fa fa-chevron-up"></a>
+</body>
+</html>

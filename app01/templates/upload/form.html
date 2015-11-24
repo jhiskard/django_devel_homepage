@@ -1,0 +1,6 @@
+{% extends 'nanocore.html' %}
+<form method="post" action="../upload/" enctype="multipart/form-data">
+{% csrf_token %}
+  <input type="file" name="files" multiple/>
+  <input type="submit" value="Upload"/>
+</form>
