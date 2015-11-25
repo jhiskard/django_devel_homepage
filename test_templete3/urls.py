@@ -32,10 +32,10 @@ urlpatterns = [
     url(r'^research.html', views.app01_view_research, name='app01_view_research'),
     url(r'^contacts.html', views.app01_view_contacts, name='app01_view_contacts'),
 
-    url(r'^people_prof.html', views.app01_view_people_prof, name='app01_view_people_prof'),
-    url(r'^people_member.html', views.app01_view_people_member, name='app01_view_people_member'),
-    url(r'^people_alumni.html', views.app01_view_people_alumni, name='app01_view_people_alumni'),
-    url(r'^people_collab.html', views.app01_view_people_collab, name='app01_view_people_collab'),
+    url(r'^people_prof.html', views02.app02_view_people_prof, name='app02_view_people_prof'),
+    url(r'^people_member.html', views02.app02_view_people_member, name='app02_view_people_member'),
+    url(r'^people_alumni.html', views02.app02_view_people_alumni, name='app02_view_people_alumni'),
+    url(r'^people_collab.html', views02.app02_view_people_collab, name='app02_view_people_collab'),
 
 #    url(r'^nanocore.html', views.app01_view_nanocore, name='app01_view_nanocore'),
     url(r'^nanocore_viewer.html', views.app01_view_nanocore, name='app01_view_nanocore'),

@@ -1,0 +1,34 @@
+{% extends 'people_base.html' %}
+
+{% block content %}
+<!--=====================
+          Content
+======================-->
+<section id="content"><div class="ic">More Website Templates @ TemplateMonster.com - July 28, 2014!</div>
+
+  <div class="container">
+
+    <h3>Alumni</h3>
+
+    <div class="grid_11">
+ 
+      <table class="table table-bordered" border=1, cellpadding="10">
+        <thead>
+          <td width=100 align="left" style="padding:2px;border-collapse:collapse; border:0px gray solid;"></td>
+          <td width=130 align="left" style="padding:2px;border-collapse:collapse; border:0px gray solid;">Name</td>
+          <td width=700 align="left" style="padding:2px;border-collapse:collapse; border:0px gray solid;">Current Position</td>
+        </thead>
+      {% for priority, thumbnail, name, status, degree, fields, office, email, tel, is_graduate, end_as, currentposition in results %}
+        <tbody>
+        <tr>
+          <td width=100 align="left" style="padding:2px;border-collapse:collapse; border:0px gray solid;">{{end_as}}</td>
+          <td width=130 align="left" style="padding:2px;border-collapse:collapse; border:0px gray solid;">{{name}}</td>
+          <td width=700 align="left" style="padding:2px;border-collapse:collapse; border:0px gray solid;">{{currentposition}}</td>
+        </tr>
+      {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{% endblock %}

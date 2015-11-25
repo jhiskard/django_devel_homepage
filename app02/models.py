@@ -10,6 +10,7 @@ def upload_path_handler(instance, filename):
     return name
 
 class Publication(models.Model):
+    priority  = models.IntegerField(default=0)
     thumbnail = models.ImageField(upload_to=upload_path_handler, blank=True)
     title = models.TextField(max_length=200)
     authors = models.TextField(max_length=200)
@@ -47,25 +48,29 @@ SORT_OF_ENDING = (
                   ("Co-advised", "Co-advised"),
                  )
 
+def upload_path_handler_member(instance, filename):
+    name = "members_thumbnail/{name}/{file}".format(
+    name=instance.name, file=filename)
+    return name
 
 class Member(models.Model):
-
     # for current members
-    thumbnail = models.ImageField(upload_to=upload_path_handler, blank=True)
+    priority  = models.IntegerField(default=0)
     name   = models.CharField(max_length=50)
+    thumbnail = models.ImageField(upload_to=upload_path_handler_member, 
+                                  blank=True)
     status = models.CharField(max_length=50, choices=SORT_OF_STATUS, 
-                              default="Students")
+                              default="Students", blank=True)
     degree = models.CharField(max_length=50, choices=SORT_OF_DEGREE, 
-                              default="M.S. Candidate")
+                              default="M.S. Candidate", blank=True)
     fields = models.TextField(max_length=200, blank=True, null=True)
     office = models.TextField(max_length=200, blank=True, null=True)
     email  = models.EmailField(blank=True, null=True)
     tel    = models.CharField(max_length=50, blank=True, null=True)
-
     # for graduate members
     is_graduate     = models.BooleanField(default=False)
     end_as          = models.CharField(max_length=50, choices=SORT_OF_ENDING,
-                                       default="M.S.")
+                                       default="M.S.", blank=True, null=True)
     currentposition = models.TextField(max_length=200, blank=True, null=True)
 
 

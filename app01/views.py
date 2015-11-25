@@ -7,6 +7,10 @@ from django.contrib.auth import logout
 from app01.forms import UploadStructureForm
 from app01.models import app01_UploadStructureModel
 
+#
+# Basic views
+#
+
 def app01_view_index(request):
     context = {}
     return render(request, 'index.html', context)
@@ -26,24 +30,10 @@ def app01_view_contacts(request):
     context = {}
     return render(request, 'contacts.html', context)
 
-def app01_view_people_prof(request):
-    context = {}
-    return render(request, 'people_prof.html', context)
 
-
-def app01_view_people_member(request):
-    context = {}
-    return render(request, 'people_member.html', context)
-
-def app01_view_people_alumni(request):
-    context = {}
-    return render(request, 'people_alumni.html', context)
-
-
-def app01_view_people_collab(request):
-    context = {}
-    return render(request, 'people_collab.html', context)
-
+#
+# NanoCore views
+#
 
 def app01_view_nanocore_junction(request):
     context = {}
@@ -142,6 +132,10 @@ def app01_view_nanocore(request):
     context['form'] = edit_form
     return render(request, 'nanocore_viewer.html', context)
 
+
+#
+# Sign in/up views
+#
 
 def logout_view(request):
     logout(request)

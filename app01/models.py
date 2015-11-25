@@ -21,9 +21,17 @@ class app01_UploadStructureModel(models.Model):
 """)
     created  = models.DateTimeField(default=now)
 
+
+InPreparation =\
 """
+SORT_OF_CONTACT = (
+                   ("Au(111)", "Au(111)"),
+                   ("Au(100)", "Au(100)")
+                  )
+
 class app01_JunctionModel(models.Model):
-    contact1 = models.CharField()
+    contact1 = models.CharField(max_length=50, choices=SORT_OF_CONTACT,
+                                default="Au(111)")
     sizec1   = models.CharField()
     contact2 = models.CharField()
     sizec2   = models.CharField()
@@ -31,6 +39,7 @@ class app01_JunctionModel(models.Model):
     sizes1   = models.CharField()
     created  = models.DateTimeField(default=now)
 """
+
 
 from django.contrib.auth.models import User
 
