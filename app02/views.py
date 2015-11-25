@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from app02.forms import PublicationForm
-from app02.models import Publication, Member
+from app02.models import Publication, Member, News
 #from app02.models import SORT_OF_STATUS, SORT_OF_DEGREE, SORT_OF_ENDING
 
 # Create your views here.
@@ -196,3 +196,29 @@ def app02_view_people_alumni(request):
 def app02_view_people_collab(request):
     context = {}
     return render(request, 'people_collab.html', context)
+
+
+def app02_view_news(request):
+
+    temp = News.objects.all().order_by('datetime')
+
+    # initial data
+    results = []
+
+    for t in temp:
+        datetime = t.datetime
+        endtime = t.endtime
+        contents = t.contents
+        try:
+            attached = t.attached.url
+        except:
+            attached = ''
+        is_activ = t.is_activ
+
+        if is_activ:
+            results.append( [datetime, endtime, contents, attached] )
+            print datetime, contents, attached
+
+    context = {'results': results, }
+
+    return render(request, 'news.html', context)
