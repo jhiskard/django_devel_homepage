@@ -31,6 +31,11 @@ def app01_view_contacts(request):
     return render(request, 'contacts.html', context)
 
 
+def app01_view_schedule(request):
+    context = {}
+    return render(request, 'schedule.html', context)
+
+
 #
 # NanoCore views
 #

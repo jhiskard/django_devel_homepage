@@ -98,7 +98,7 @@
           <a href="nanocore_viewer.html" class="banner "><div class="maxheight1">
             <div class="fa fa-pencil"></div>NanoCore</div>
           </a>
-          <a href="#" class="banner "><div class="maxheight1">
+          <a href="schedule.html" class="banner "><div class="maxheight1">
             <div class="fa fa-calendar"></div>Schedule</div>
           </a>
         </div>
@@ -161,21 +161,21 @@ Our laboratory focuses on (1) the understanding of novel properties of functiona
   <article class="content_gray">
     <div class="container">
       <div class="row">
-        <div class="grid_7">
-          <h3>Recent Publications</h3>
+        <div class="grid_6">
+          <h3><a href="publications.html">Recent Publications</a></h3>
 
           {% for i, thumbnail, title, authors, year, vol, pages, doi, link, abstract, pub_m, pub_d in results %}
           <div class="block-2">
             <img src="{{thumbnail}}" alt="No Image" class="img_inner fleft" width="150" height="100">
             <div class="extra_wrapper">
-            <p><span class="fwn"><a href="{{link}}"><strong>{{title}}</strong></a></span><br>
-            <em>{{authors}}</em></p>
-            <div align="right">
+              <p><span class="fwn"><a href="{{link}}"><strong>{{title}}</strong></a></span><br>
+              <em>{{authors}}</em></p>
+              <div align="right">
+              </div>
             </div>
           </div>
+          {% endfor %}
         </div>
-        {% endfor %}
-      </div>
 <!--
           <div class="block-2">
             <img src="/static/images/page1_img1.jpg" alt="" class="img_inner fleft">
@@ -199,16 +199,20 @@ Our laboratory focuses on (1) the understanding of novel properties of functiona
         </div>
 -->
 
-        <div class="grid_4 preffix_1">
-          <h3>News</h3>
+        <div class="grid_5 preffix_1">
+          <h3><a href="news.html">News</a></h3>
+          {% for datetime, endtime, contents, attached in results2 %}
           <blockquote class="bq1">
-            <p>“Curabitur vel lorem sit amet nulla erero fermentum. In vitae varius auguectetu ligula. Etiam dui eros, laoreet site am est vel commodo venenatisipiscing... ”</p>
-            <span>Liza Jons</span>
+            <p>{{contents}}</p>
+            <span>{{datetime}}</span>
           </blockquote>
+          {% endfor %}
+<!--
           <blockquote class="bq1">
             <p>“Burabitur vel lorem sit amet nulla erero fermentum. In vitae varius auguectetu ligula. Etiam dui eros, laoreet site am ast vel commodo venenatisipiscino... ”</p>
             <span>Mark Brown</span>
           </blockquote>
+-->
         </div>
 
       </div>
@@ -217,12 +221,12 @@ Our laboratory focuses on (1) the understanding of novel properties of functiona
 
   <div class="container">
     <div class="row">
-      <div class="grid_5">
+      <div class="grid_4">
         <h4>About Our Lab.</h4>
-        <img src="/static/images/page1_img3.jpg" alt="" class="img_inner fleft">
-          <p>Curabitur vel lorem sit amet nulla ullamcorper fermentum In vitae dert arius augue, eu consectetur </p>
-          <p class="offset__1">Eligulaam dui eros dertolisce dertolo adipiscing quam id risus sagittis</p>
-          Curabitur vel lorem sit amet nulla ullamcorper fermentum In vitae dert rius augue, eu consectetur larem dui eros dertolisce dertolo 
+<!--        <img src="/static/images/page1_img3.jpg" alt="" class="img_inner fleft"> -->
+          <p>Friendly co-workers</p>
+          <p>Tailored personal research topics</p>
+          <p>Various overseas conference opportunities </p>
       </div>
       <div class="grid_4">
         <h4>Keywords</h4>
@@ -235,7 +239,7 @@ Our laboratory focuses on (1) the understanding of novel properties of functiona
           <li><a href="#">Jalesuadaorem ipsum dolor sit ame</a></li>
         </ul>
       </div>
-      <div class="grid_3">
+      <div class="grid_4">
         <h4>Contact Info</h4>
         <address>
           <ul class="cont_address">

@@ -66,6 +66,11 @@ def app02_view_publications_index(request):
             saved = edit_form.save()
 
     context['form'] = edit_form
+
+    #
+    # Recent publications
+    #
+
     temp = Publication.objects.all()
 
     i_break = 3
@@ -94,9 +99,37 @@ def app02_view_publications_index(request):
 
     # sort data
     results.sort(key=lambda l: (l[4], l[10], l[11]), reverse=True)
-
     results = results[:i_break]
     context['results'] = results
+
+    #
+    # Recent News
+    #
+
+    temp = News.objects.all().order_by('datetime')
+    temp = temp.reverse()
+
+    # initial data
+    results = []
+    i_break = 3
+
+    for t in temp:
+        datetime = t.datetime
+        endtime = t.endtime
+        contents = t.contents
+        try:
+            attached = t.attached.url
+        except:
+            attached = ''
+        is_activ = t.is_activ
+
+        if is_activ:
+            results.append( [datetime, endtime, contents, attached] )
+    
+    # select data
+    results2 = results[:i_break]
+    context['results2'] = results2
+
     return render(request, 'index.html', context)
 
 
@@ -201,6 +234,7 @@ def app02_view_people_collab(request):
 def app02_view_news(request):
 
     temp = News.objects.all().order_by('datetime')
+    temp = temp.reverse()
 
     # initial data
     results = []
@@ -222,3 +256,4 @@ def app02_view_news(request):
     context = {'results': results, }
 
     return render(request, 'news.html', context)
+

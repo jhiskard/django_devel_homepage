@@ -75,7 +75,7 @@ class Member(models.Model):
 
 
 def upload_path_handler_news(instance, filename):
-    name = "new_attached/{datetime}/{file}".format(
+    name = "news_attached/{datetime}/{file}".format(
     datetime=instance.datetime, file=filename)
     name1 = name.split()[0]; name2 = name.split()[1]
     return name1 + '_' + name2
@@ -87,3 +87,4 @@ class News(models.Model):
     contents = models.TextField(max_length=5000, blank=True)
     attached = models.ImageField(upload_to=upload_path_handler_news, blank=True)
     is_activ = models.BooleanField(default=True)
+

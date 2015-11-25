@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^research.html', views.app01_view_research, name='app01_view_research'),
     url(r'^contacts.html', views.app01_view_contacts, name='app01_view_contacts'),
     url(r'^news.html', views02.app02_view_news, name='app02_view_news'),
+    url(r'^schedule.html', views.app01_view_schedule, name='app01_view_schedule'),
 
     url(r'^people_prof.html', views02.app02_view_people_prof, name='app02_view_people_prof'),
     url(r'^people_member.html', views02.app02_view_people_member, name='app02_view_people_member'),

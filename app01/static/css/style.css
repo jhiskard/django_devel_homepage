@@ -518,11 +518,11 @@ header h1.stuck_head {
   position: relative;
   top: 3px;
   background-color: #f2f5f6;
-  padding: 31px 57px 40px 58px;
+  padding: 25px 57px 50px 48px;
   color: #626161;
 }
 .bq1 p {
-  font-style: italic;
+  font-size: 13px;
   margin-bottom: 11px;
 }
 .bq1 span {
