@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from app01 import views
 from app02 import views as views02
+from app03 import views as views03
 
 from django.views.generic import TemplateView
 from app01.forms import LoginForm
@@ -33,6 +34,7 @@ urlpatterns = [
     url(r'^contacts.html', views.app01_view_contacts, name='app01_view_contacts'),
     url(r'^news.html', views02.app02_view_news, name='app02_view_news'),
     url(r'^schedule.html', views.app01_view_schedule, name='app01_view_schedule'),
+    url(r'^board.html', views03.app03_view_board, name='app03_view_board'),
 
     url(r'^people_prof.html', views02.app02_view_people_prof, name='app02_view_people_prof'),
     url(r'^people_member.html', views02.app02_view_people_member, name='app02_view_people_member'),
