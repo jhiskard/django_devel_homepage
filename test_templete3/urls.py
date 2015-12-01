@@ -21,33 +21,29 @@ from django.conf import settings
 from app01 import views
 from app02 import views as views02
 from app03 import views as views03
+from app04 import views as views04
 
 from django.views.generic import TemplateView
 from app01.forms import LoginForm
-#from app02.forms import PublicationForm
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+
     url(r'^$', views.app01_view_index, name='app01_view_index'),
     url(r'^index.html', views02.app02_view_publications_index, name='app01_view_index'),
     url(r'^research.html', views.app01_view_research, name='app01_view_research'),
     url(r'^contacts.html', views.app01_view_contacts, name='app01_view_contacts'),
-    url(r'^news.html', views02.app02_view_news, name='app02_view_news'),
     url(r'^schedule.html', views.app01_view_schedule, name='app01_view_schedule'),
-    url(r'^board.html', views03.app03_view_board, name='app03_view_board'),
 
+    url(r'^news.html', views02.app02_view_news, name='app02_view_news'),
+    url(r'^board.html', views03.app03_view_board, name='app03_view_board'),
     url(r'^people_prof.html', views02.app02_view_people_prof, name='app02_view_people_prof'),
     url(r'^people_member.html', views02.app02_view_people_member, name='app02_view_people_member'),
     url(r'^people_alumni.html', views02.app02_view_people_alumni, name='app02_view_people_alumni'),
     url(r'^people_collab.html', views02.app02_view_people_collab, name='app02_view_people_collab'),
-
-#    url(r'^nanocore.html', views.app01_view_nanocore, name='app01_view_nanocore'),
-    url(r'^nanocore_viewer.html', views.app01_view_nanocore, name='app01_view_nanocore'),
-    url(r'^nanocore_junction.html', views.app01_view_nanocore_junction, name='app01_view_nanocore_junction'),
-    url(r'^nanocore_analysis.html', views.app01_view_nanocore_analysis, name='app01_view_nanocore_analysis'),
-
-    url(r'^app01_view_nanocore/', views.app01_view_nanocore, name="app01_view_nanocore"),
     url(r'^publications.html', views02.app02_view_publications, name='app02_view_publications'),
+    url(r'^nanocore_viewer.html', views04.app04_view_nanocore, name='app04_view_nanocore'),
+    url(r'^nanocore_view.html', views04.app04_view_nanocore_view, name='app04_view_nanocore_view'),
 
     url(r'^signup/$', 'app01.views.signup', name='signup'),
     url(r'^signup_ok/$', TemplateView.as_view(

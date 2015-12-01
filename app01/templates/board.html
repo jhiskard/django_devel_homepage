@@ -104,16 +104,16 @@
         </tr>
         </thead>
         <tbody>
-        {% for i, user, title, contents, created, modified in results %}
+        {% for id, i, user, title, contents, created, modified in results %}
         <tr>
         {% if i == 0 %}
-          <th class="even" scope="cols">{{title}}</th>
+          <th class="even" scope="cols"><a href="board.html/((id))">{{title}}</a></th>
           <td class="even">{{user}}</td>
           <td class="even">{{created}}</td>
           <td class="even">{{modified}}</td>
         </tr>
         {% else %}
-          <th scope="cols">{{title}}</th>
+          <th><a href="board.html/((id))">{{title}}</a></th>
           <td>{{user}}</td>
           <td>{{created}}</td>
           <td>{{modified}}</td>
@@ -122,6 +122,7 @@
         {% endfor %}
         </tbody>
       </table>
+
       <div class="pagination" align='center'>
         <span class="step-links">
           <a href="?page=1">Recent</a>

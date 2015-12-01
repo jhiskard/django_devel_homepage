@@ -1,14 +1,7 @@
 from django import forms
-from app01.models import app01_UploadStructureModel
-
-class UploadStructureForm(forms.ModelForm):
-    class Meta:
-        model = app01_UploadStructureModel
-        fields = ("structurefile", "description", "commands", "created")
-
-
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+
 
 class SignupForm(UserCreationForm):
     email = forms.EmailField(required=True, widget=forms.EmailInput(

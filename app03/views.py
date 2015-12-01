@@ -32,12 +32,13 @@ def app03_view_board(request):
     i = 1
     results = []
     for t in posts:
+        id = t.id
         user = t.user
         title = t.title
         contents = t.contents
         created = t.created
         modified = t.modified
-        results.append( [i%2, user, title, contents, created, modified] )
+        results.append( [id, i%2, user, title, contents, created, modified] )
         i += 1
 
     context = {
