@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.conf import settings
 
 # Create your views here.
 from app03.forms import BoardModelForm
@@ -9,6 +10,9 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 # Basic views
 #
 
+from django.contrib.auth.decorators import login_required
+
+@login_required
 def app03_view_board(request):
 
     # login required
