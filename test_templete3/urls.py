@@ -34,29 +34,24 @@ urlpatterns = [
     url(r'^research.html', views.app01_view_research, name='app01_view_research'),
     url(r'^contacts.html', views.app01_view_contacts, name='app01_view_contacts'),
     url(r'^schedule.html', views.app01_view_schedule, name='app01_view_schedule'),
-
     url(r'^news.html', views02.app02_view_news, name='app02_view_news'),
-    url(r'^board.html', views03.app03_view_board, name='app03_view_board'),
     url(r'^people_prof.html', views02.app02_view_people_prof, name='app02_view_people_prof'),
     url(r'^people_member.html', views02.app02_view_people_member, name='app02_view_people_member'),
     url(r'^people_alumni.html', views02.app02_view_people_alumni, name='app02_view_people_alumni'),
     url(r'^people_collab.html', views02.app02_view_people_collab, name='app02_view_people_collab'),
     url(r'^publications.html', views02.app02_view_publications, name='app02_view_publications'),
+
+    url(r'^board.html', views03.app03_view_board, name='app03_view_board'),
+
     url(r'^nanocore_viewer.html', views04.app04_view_nanocore, name='app04_view_nanocore'),
-    url(r'^nanocore_view.html', views04.app04_view_nanocore_view, name='app04_view_nanocore_view'),
+    url(r'^nanocore_view/(?P<struct_id>\d+)$', views04.app04_view_nanocore_view, name='app04_view_nanocore_view'),
+    url(r'^detail/(?P<xml_name>.*)/$', 'app04.views.detail', name='detail'),
 
     url(r'^signup/$', 'app01.views.signup', name='signup'),
-    url(r'^signup_ok/$', TemplateView.as_view(
-        template_name='signup_ok.html'), name='signup_ok'),
+    url(r'^signup_ok/$', TemplateView.as_view(template_name='signup_ok.html'), name='signup_ok'),
 
-    url(r'^login/$', 'django.contrib.auth.views.login',
-        {'authentication_form': LoginForm}, name='login_url'),
-    url(r'^logout/$', 'django.contrib.auth.views.logout',
-        {'next_page': '/login/'}, name='logout_url'),
-
-#    url(r'^accounts/login/', 'django.contrib.auth.views.login', name='login',
-#        kwargs={'template_name': 'login.html',}),
-#    url(r'^accounts/logout/', views.logout_view, name='logout'),
+    url(r'^login/$', 'django.contrib.auth.views.login', {'authentication_form': LoginForm}, name='login_url'),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/login/'}, name='logout_url'),
 ]
 
 if settings.DEBUG:

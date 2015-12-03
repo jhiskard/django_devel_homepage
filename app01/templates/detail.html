@@ -1,0 +1,38 @@
+{% extends 'nanocore_base.html' %}
+		
+{% block content %}
+<!--=====================
+          Content
+======================-->
+  <div class="container">
+
+    <h3>XML Parser for SIESTA test version</h3>
+
+    <p class="fwn">Under construction...</p>
+    How to Use This Page<br><p>
+
+<!--=====================
+       atributes
+======================-->
+    <div class="grid_11">
+
+      <iframe src="/uploaded_files/siesta.xhtml" width="100%" height="650px"></iframe>
+
+      <form method="POST" action="/app01_view_nanocore/" enctype="multipart/form-data"></form>
+      <table class="table table-bordered" border=1, cellpadding="10">
+      <thead>
+        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">attribute</td>
+        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">value</td>
+      </thead>
+      <tbody>                   
+      {% for atrrib in atrrib_list %}
+      <tr>
+        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">{{atrrib.0}}</td>
+        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">{{atrrib.1}}</td>
+     </tr>
+     {% endfor %}                                                       
+     </tbody>
+     </table>
+
+  </div>
+{% endblock %}

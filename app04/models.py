@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 def upload_path_handler(instance, filename):
     name = "structure_files/user_{id}/{created}/{file}".format(
-    id=instance.user.id, created=instance.created, file=filename)
+    id=instance.user.id, created=str(instance.created).replace(':','_').replace('+','_'), file=filename)
     name1 = name.split()[0]; name2 = name.split()[1]
     return name1 + '_' + name2
 
@@ -21,3 +21,4 @@ class StructureModel(models.Model):
 # After manipulation, the final name of your AtomsSystem object should be "atoms".
 """)
     created  = models.DateTimeField(default=now)
+

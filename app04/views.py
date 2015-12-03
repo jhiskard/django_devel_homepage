@@ -11,16 +11,6 @@ from app04.models import StructureModel
 # NanoCore views # 
 ##################
 
-def app04_view_nanocore_junction(request):
-    context = {}
-    return render(request, 'nanocore_junction.html', context)
-
-
-def app04_view_nanocore_analysis(request):
-    context = {}
-    return render(request, 'nanocore_analysis.html', context)
-
-
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -46,8 +36,8 @@ def app04_view_nanocore(request):
             import os
             abspath  = os.getcwd()
             filename = request.FILES['structure']
-            filepath = '/uploaded_files/structure_files/user_%s/%s+00:00/' % \
-            (request.user.id, request.POST['created'])
+            filepath = '/uploaded_files/structure_files/user_%s/%s_00_00/' % \
+            (request.user.id, request.POST['created'].replace(':','_'))
             filepath_1 = filepath.split()[0]
             filepath_2 = filepath.split()[1]
             filepath = filepath_1 + '_' + filepath_2
@@ -94,13 +84,13 @@ def app04_view_nanocore(request):
     results2 = []
     i = 1
     for t in temp:
+        struct_id = t.id
         structure = str(t.structure).split('/')[-1]
         url = t.structure.url
         description = str(t.description)
         commands = str(t.commands)
-        #i, user, struct, descript, comm, link
         print [i, structure, description, commands, url]
-        results2.append([i, structure, description, commands, url])
+        results2.append([struct_id, structure, description, commands, url])
         i += 1
     results2.reverse()
 
@@ -110,6 +100,74 @@ def app04_view_nanocore(request):
     return render(request, 'nanocore_viewer.html', context)
 
 
-def app04_view_nanocore_view(request):
+def app04_view_nanocore_view(request, struct_id):
     context = {}
+
+    # login required
+    if not request.user.is_authenticated():
+        return redirect(settings.LOGIN_URL)
+
+    edit_form = StructureForm()
+    temp = StructureModel.objects.all()
+
+    for t in temp:
+        if int(t.id) == int(struct_id):
+            print "matched:", t.id, struct_id
+            structure = t.structure.url
+            filename = structure.split('/')[-1]
+            import os
+            abspath = os.getcwd()
+            fullpath = abspath + structure
+
+            # NanoCore part
+            import NanoCore as nc
+            atoms = []
+ 
+            if '.xsf' in str(filename):
+                command_read = "atoms = nc.io.read_xsf('%s')" % fullpath
+                exec command_read
+ 
+            elif '.xyz' in str(filename):
+                command_read = "atoms = nc.io.read_xyz('%s')" % fullpath
+                exec command_read
+ 
+            results = []
+            i = 1
+            for atm in atoms:
+                symb = atm.get_symbol()
+                x,y,z = atm.get_position()
+                print i, symb, x,y,z
+                results.append([i, symb, x,y,z])
+                i += 1
+            context = {'results': results,}
+
     return render(request, 'nanocore_view.html', context)
+
+
+from xml.etree.ElementTree import parse
+import os
+
+def detail(request, xml_name):
+    atrrib_list = []
+
+    try:
+        tree = parse("./uploaded_files/"+xml_name)
+        note = tree.getroot()
+        parameterList = note.find("{http://www.xml-cml.org/schema}parameterList")
+
+        for child in parameterList:
+            child_list = []
+
+            if "name" in child.attrib:
+                child_list.append(child.attrib["name"])
+
+            else:
+                child_list.append(child.attrib["title"])
+                child_list.append(child.findtext("{http://www.xml-cml.org/schema}scalar"))
+                atrrib_list.append(child_list)
+
+    except IOError, e:
+        atrrib_list = []
+
+    context = {"atrrib_list": atrrib_list,}
+    return render(request, "detail.html", context)

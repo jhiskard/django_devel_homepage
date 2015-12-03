@@ -6,8 +6,8 @@
 ======================-->
   <div class="container">
 
+    <div class="grid_5">
     <h3>1. Structure Viewer</h3>
-
     <p class="fwn">A simple atomic structure viewer based on jsmol. Some simple modification is also available on this website.<br><a href="nanocore_details.html">Click here </a>for more details.</p>
     How to Use This Page<br>
     1. Select your atomic structure file. (required) <br>
@@ -20,10 +20,40 @@
       <p><input type="submit" value="Submit"/></p>
     </form>
     <form method="GET" action="/nanocore_viewer.html"><input type="submit" value="Reset"></form>
+    </div>
 
+<!--=====================
+       Archive
+======================-->
+    <div class="grid_6">
+      <h3>Archive</h3>
+      <form method="POST" action="/app01_view_nanocore/" enctype="multipart/form-data"></form>
+      <table class="table table-bordered" border=1, cellpadding="10">
+      <thead>
+        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">Structure ID</td>
+        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">Structure file</td>
+        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">Description</td>
+        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">Commands</td>
+        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">Jsmol View</td>
+      </thead>
+      <tbody>                   
+      {% for i, struct, descript, comm, link in results2 %}
+      <tr>
+        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">{{i}}</td>
+        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">{{struct}}</td>
+        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">{{descript}}</td>
+        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">{{comm}}</td>
+        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">
+          <a href="nanocore_view/{{i}}?url={{link}}&index={{i}}">View</a>
+          <a href="{{link}}">Download</a>
+        </td>
+     </tr>
+     {% endfor %}                                                       
+     </tbody>
+     </table>
+    </div>
 
   <article class="container">
-
     <div class="grid_12">
       <h3>Information on your atomic structure</h3>
     </div>
@@ -101,37 +131,6 @@
         <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">{{x}}</td>
         <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">{{y}}</td>
         <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">{{z}}</td>
-     </tr>
-     {% endfor %}                                                       
-     </tbody>
-     </table>
-    </div>
-
-<!--=====================
-       Archive
-======================-->
-
-    <div class="grid_11">
-      <div class="text1"><a href="#">Archive</a></div>
-      <form method="POST" action="/app01_view_nanocore/" enctype="multipart/form-data"></form>
-      <table class="table table-bordered" border=1, cellpadding="10">
-      <thead>
-        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">Serial Number</td>
-        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">structure file</td>
-        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">description</td>
-        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">commands</td>
-        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">link</td>
-      </thead>
-      <tbody>                   
-      {% for i, struct, descript, comm, link in results2 %}
-      <tr>
-        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">{{i}}</td>
-        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">{{struct}}</td>
-        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">{{descript}}</td>
-        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">{{comm}}</td>
-        <td border="1" align="center" style="border-collapse:collapse; border:1px gray solid;">
-          <a href="nanocore_view.html?url={{link}}&index={{i}}">Click</a>
-        </td>
      </tr>
      {% endfor %}                                                       
      </tbody>
